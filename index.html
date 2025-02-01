@@ -3,58 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Страница в разработке</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI Semibold', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f3f3;
-            position: relative;
-        }
-        .error-code {
-            position: absolute;
-            top: 50%;
-            left: 5%;
-            font-size: 72px;
-            color: #d3d3d3;
-            transform: translateY(-50%);
-        }
-        h1 {
-            color: #0078d7;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #323130;
-            font-size: 16px;
-        }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: #ffffff;
-            background-color: #0078d7;
-            text-decoration: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #005a9e;
-        }
-    </style>
+    <title>Мои сборки Windows</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="error-code">503</div>
-    <div style="margin-left: 15%;">
-        <h1>Эта страница еще разрабатывается</h1>
-        <p>Сайт будет готов, примерно через неделю. Извините!</p>
-        <a href="https://gobobdev.github.io/home" class="button">Посетить главную страницу</a>
+    <header>
+        <h1>Мои сборки Windows</h1>
+        <div class="social-links">
+            <a href="https://github.com/GoBobDev" target="_blank">
+                <img src="github_icon.png" alt="GitHub Icon">
+            </a>
+            <a href="https://youtube.com/@GoBobDev" target="_blank">
+                <img src="youtube_icon.png" alt="YouTube Icon">
+            </a>
+            <a href="https://discord.com/ваш_профиль" target="_blank">
+                <img src="discord_icon.png" alt="Discord Icon">
+            </a>
+        </div>
+        <div class="theme-switch" onclick="toggleTheme()">Темная тема</div>
+    </header>
+    <main>
+        <div class="card">
+            <img src="screenshot_xtweaker.png" alt="LunaOS Desktop Screenshot">
+            <div class="info">
+                <div class="details">
+                    <h2>LunaOS</h2>
+                    <p>Модификатор системы, под производительность.</p>
+                </div>
+                <a onclick="showModal()">Скачать</a>
+            </div>
+        </div>
+        <div class="card gray disabled">
+            <div class="info">
+                <div class="details">
+                    <h2>Скоро!</h2>
+                    <p>Возможно, здесь что-то будет.</p>
+                </div>
+                <a href="#">Скачать</a>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>Сайт ещё не доделан!</p>
+    </footer>
+    <div class="modal" id="downloadModal">
+        <div class="modal-content" id="modalContent">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <h2>Выберите релиз</h2>
+            <a href="http://ваш_сайт/xtweaker_stable_download">ISO файл (Windows 11 Pro 24H2 Classic) [v1]</a>
+            <a href="http://ваш_сайт/xtweaker_stable_download">ISO файл (Windows 11 Pro 22H2 Lite) [v0]</a>
+            <a href="http://ваш_сайт/xtweaker_stable_download">ISO файл (Windows 10 Pro 22H2 Lite) [v0]</a>
+            <a href="http://ваш_сайт/xtweaker_beta_download">EXE модификатор</a>
+        </div>
     </div>
+    <script>
+        // Синхронизация темы с браузером и переключение тем
+        document.addEventListener('DOMContentLoaded', function() {
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (prefersDarkScheme) {
+                document.body.classList.add('dark');
+                document.querySelector('header').classList.add('dark');
+                document.querySelector('footer').classList.add('dark');
+                document.querySelectorAll('.card').forEach(card => {
+                    card.classList.add('dark');
+                });
+                document.querySelector('#modalContent').classList.add('dark');
+            }
+        });
+
+        function toggleTheme() {
+            const isDarkMode = document.body.classList.toggle('dark');
+            document.querySelector('header').classList.toggle('dark', isDarkMode);
+            document.querySelector('footer').classList.toggle('dark', isDarkMode);
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.toggle('dark', isDarkMode);
+            });
+            document.querySelector('#modalContent').classList.toggle('dark', isDarkMode);
+        }
+
+        function showModal() {
+            document.getElementById('downloadModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('downloadModal').classList.remove('show');
+        }
+    </script>
 </body>
 </html>
